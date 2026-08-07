@@ -1,0 +1,53 @@
+[
+  {
+    "id": "ALT-901",
+    "alertCode": "SEC-TOR-VELOCITY",
+    "title": "High Velocity Tor Checkout Ring Detected",
+    "description": "Risk Agent identified 14 rapid checkout attempts originating from Tor Exit Node 185.220.101.4 targeting high-end luxury items.",
+    "severity": "critical",
+    "agentSource": "Risk Agent",
+    "targetType": "Seller",
+    "targetId": "SELL-8812",
+    "timestamp": "2026-08-07T21:45:00Z",
+    "isResolved": false,
+    "assignedTo": "Senior Risk Analyst - Team Alpha"
+  },
+  {
+    "id": "ALT-902",
+    "alertCode": "CV-LOGO-TM",
+    "title": "Counterfeit Trademark Infringement Detected",
+    "description": "Authenticity Agent flagged product listing PROD-9021 with 96% confidence due to visual logo geometry deformation.",
+    "severity": "high",
+    "agentSource": "Authenticity Agent",
+    "targetType": "Product",
+    "targetId": "PROD-9021",
+    "timestamp": "2026-08-07T18:30:00Z",
+    "isResolved": false,
+    "assignedTo": "Legal & IP Compliance"
+  },
+  {
+    "id": "ALT-903",
+    "alertCode": "NLP-BOT-FARM",
+    "title": "Automated Review Bot Farm Outbreak",
+    "description": "Review Agent flagged 42 suspicious reviews across 5 store listings originating from newly registered user accounts.",
+    "severity": "medium",
+    "agentSource": "Review Agent",
+    "targetType": "User",
+    "targetId": "USER-8819",
+    "timestamp": "2026-08-07T17:10:00Z",
+    "isResolved": true,
+    "assignedTo": "Content Moderation Bot Engine"
+  },
+  {
+    "id": "ALT-904",
+    "alertCode": "PAY-CARD-STUFFING",
+    "title": "Possible Credit Card BIN Testing Attack",
+    "description": "Multiple failed card authorizations detected with sequential expiration dates on payment gateway.",
+    "severity": "critical",
+    "agentSource": "Risk Agent",
+    "targetType": "Transaction",
+    "targetId": "TXN-88001",
+    "timestamp": "2026-08-07T16:00:00Z",
+    "isResolved": false
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "AUD-501",
+    "timestamp": "2026-08-07T21:45:10Z",
+    "agentName": "Risk Agent (XGBoost v2.4.1)",
+    "action": "REJECT",
+    "entityId": "TXN-88001",
+    "entityType": "Order",
+    "status": "quarantined",
+    "confidenceScore": 94.2,
+    "details": "Automated order rejection triggered by Tor Exit Node detection & high velocity rules."
+  },
+  {
+    "id": "AUD-502",
+    "timestamp": "2026-08-07T21:10:05Z",
+    "agentName": "Review Agent (DistilBERT v1.9.2)",
+    "action": "REJECT",
+    "entityId": "REV-1001",
+    "entityType": "Review",
+    "status": "flagged",
+    "confidenceScore": 98.0,
+    "details": "Spam URL promotion detected and review content auto-purged from public index."
+  },
+  {
+    "id": "AUD-503",
+    "timestamp": "2026-08-07T18:30:15Z",
+    "agentName": "Authenticity Agent (YOLO v8x)",
+    "action": "QUARANTINE",
+    "entityId": "PROD-9021",
+    "entityType": "Product",
+    "status": "escalated",
+    "confidenceScore": 96.0,
+    "details": "Product listing quarantined and seller payouts frozen pending IP brand verification."
+  },
+  {
+    "id": "AUD-504",
+    "timestamp": "2026-08-07T17:15:00Z",
+    "agentName": "Authenticity Agent (YOLO v8x)",
+    "action": "APPROVE",
+    "entityId": "PROD-9022",
+    "entityType": "Product",
+    "status": "passed",
+    "confidenceScore": 99.1,
+    "details": "Brand seal and package geometry verified successfully."
+  },
+  {
+    "id": "AUD-505",
+    "timestamp": "2026-08-07T16:00:22Z",
+    "agentName": "Risk Agent (XGBoost v2.4.1)",
+    "action": "FLAG",
+    "entityId": "TXN-88003",
+    "entityType": "Order",
+    "status": "flagged",
+    "confidenceScore": 81.5,
+    "details": "Headless browser fingerprint flagged for manual tier-2 risk review."
+  }
+]

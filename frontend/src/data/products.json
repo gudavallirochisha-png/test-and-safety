@@ -1,0 +1,115 @@
+[
+  {
+    "id": "PROD-9021",
+    "productName": "Luxury Designer Leather Handbag",
+    "sellerId": "SELL-8812",
+    "sellerName": "VogueBoutique Outlet",
+    "category": "Fashion & Accessories",
+    "price": 1499.99,
+    "imageUrl": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&auto=format&fit=crop&q=60",
+    "uploadedAt": "2026-08-07T18:30:00Z",
+    "authenticityScore": 14,
+    "riskLevel": "critical",
+    "yoloDetections": [
+      {
+        "label": "Counterfeit Logo Misalignment",
+        "confidence": 0.96,
+        "boundingBox": [45, 120, 210, 180]
+      },
+      {
+        "label": "Stitching Anomaly",
+        "confidence": 0.89,
+        "boundingBox": [110, 250, 300, 320]
+      }
+    ],
+    "status": "COUNTERFEIT_FLAGGED",
+    "flaggedReasons": [
+      "Logo proportions violate trademark policy",
+      "Listing price 85% below market baseline",
+      "Seller account created < 48 hours ago"
+    ]
+  },
+  {
+    "id": "PROD-9022",
+    "productName": "Wireless Noise Cancelling Headphones v2",
+    "sellerId": "SELL-4109",
+    "sellerName": "TechHaven Official",
+    "category": "Electronics",
+    "price": 299.00,
+    "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60",
+    "uploadedAt": "2026-08-07T17:15:00Z",
+    "authenticityScore": 98,
+    "riskLevel": "low",
+    "yoloDetections": [
+      {
+        "label": "Authentic Brand Seal",
+        "confidence": 0.99,
+        "boundingBox": [10, 10, 100, 100]
+      }
+    ],
+    "status": "VERIFIED",
+    "flaggedReasons": []
+  },
+  {
+    "id": "PROD-9023",
+    "productName": "Ultra Edition Smartwatch Stainless Steel",
+    "sellerId": "SELL-9910",
+    "sellerName": "GadgetDeals Corp",
+    "category": "Wearables",
+    "price": 89.99,
+    "imageUrl": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60",
+    "uploadedAt": "2026-08-07T16:00:00Z",
+    "authenticityScore": 42,
+    "riskLevel": "high",
+    "yoloDetections": [
+      {
+        "label": "Cloned Shell Geometry",
+        "confidence": 0.88,
+        "boundingBox": [50, 50, 200, 200]
+      }
+    ],
+    "status": "MANUAL_REVIEW",
+    "flaggedReasons": [
+      "Serial number checksum mismatch",
+      "Stock image duplication across 14 fraudulent listings"
+    ]
+  },
+  {
+    "id": "PROD-9024",
+    "productName": "Ergonomic Mesh Office Chair",
+    "sellerId": "SELL-1102",
+    "sellerName": "FurnishDirect",
+    "category": "Home & Office",
+    "price": 249.50,
+    "imageUrl": "https://images.unsplash.com/photo-1580481072645-022f9a6d129b?w=500&auto=format&fit=crop&q=60",
+    "uploadedAt": "2026-08-07T14:20:00Z",
+    "authenticityScore": 95,
+    "riskLevel": "low",
+    "yoloDetections": [],
+    "status": "VERIFIED",
+    "flaggedReasons": []
+  },
+  {
+    "id": "PROD-9025",
+    "productName": "Limited Edition High-Top Sneakers",
+    "sellerId": "SELL-7719",
+    "sellerName": "KicksEmpire",
+    "category": "Footwear",
+    "price": 650.00,
+    "imageUrl": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500&auto=format&fit=crop&q=60",
+    "uploadedAt": "2026-08-07T12:00:00Z",
+    "authenticityScore": 68,
+    "riskLevel": "medium",
+    "yoloDetections": [
+      {
+        "label": "Font Weight Anomaly on Sole",
+        "confidence": 0.72,
+        "boundingBox": [120, 180, 220, 260]
+      }
+    ],
+    "status": "MANUAL_REVIEW",
+    "flaggedReasons": [
+      "Inconsistent barcode format"
+    ]
+  }
+]

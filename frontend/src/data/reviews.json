@@ -1,0 +1,86 @@
+[
+  {
+    "id": "REV-1001",
+    "productId": "PROD-9021",
+    "productTitle": "Luxury Designer Leather Handbag",
+    "reviewerId": "USER-9941",
+    "reviewerName": "FastPromoterBot",
+    "reviewText": "THIS IS TERRIBLE DO NOT BUY THIS ITEM GO TO HTTP://SPAM-SCAM-DEALS.SITE FOR 90% DISCOUNT USE CODE FREEGIFT NOW!!!",
+    "rating": 1,
+    "timestamp": "2026-08-07T21:10:00Z",
+    "distilBertToxicityScore": 96,
+    "distilBertSentimentScore": -0.92,
+    "isFakeReviewProb": 98,
+    "riskLevel": "critical",
+    "flaggedCategories": ["SPAM_URL", "TOXICITY", "BOT_PATTERN", "COMMERCIAL_PROMOTION"],
+    "status": "REJECTED",
+    "reviewerHistoryStats": {
+      "totalReviews": 84,
+      "flaggedRatio": 0.95,
+      "accountAgeDays": 1
+    }
+  },
+  {
+    "id": "REV-1002",
+    "productId": "PROD-9022",
+    "productTitle": "Wireless Noise Cancelling Headphones v2",
+    "reviewerId": "USER-3310",
+    "reviewerName": "Michael Scott",
+    "reviewText": "Outstanding active noise cancellation! Audio clarity is crisp and battery life easily lasts two full working days.",
+    "rating": 5,
+    "timestamp": "2026-08-07T20:00:00Z",
+    "distilBertToxicityScore": 1,
+    "distilBertSentimentScore": 0.94,
+    "isFakeReviewProb": 2,
+    "riskLevel": "low",
+    "flaggedCategories": [],
+    "status": "PUBLISHED",
+    "reviewerHistoryStats": {
+      "totalReviews": 18,
+      "flaggedRatio": 0.0,
+      "accountAgeDays": 420
+    }
+  },
+  {
+    "id": "REV-1003",
+    "productId": "PROD-9023",
+    "productTitle": "Ultra Edition Smartwatch Stainless Steel",
+    "reviewerId": "USER-8819",
+    "reviewerName": "ReviewFarm_Acc3",
+    "reviewText": "Best watch ever! Highly recommended 5 stars! Seller is amazing, great shipping speed, purchase now!",
+    "rating": 5,
+    "timestamp": "2026-08-07T19:15:00Z",
+    "distilBertToxicityScore": 8,
+    "distilBertSentimentScore": 0.88,
+    "isFakeReviewProb": 87,
+    "riskLevel": "high",
+    "flaggedCategories": ["INCENTIVIZED_FAKE_REVIEW", "ASTROTURFFING"],
+    "status": "PENDING_MODERATION",
+    "reviewerHistoryStats": {
+      "totalReviews": 140,
+      "flaggedRatio": 0.72,
+      "accountAgeDays": 3
+    }
+  },
+  {
+    "id": "REV-1004",
+    "productId": "PROD-9024",
+    "productTitle": "Ergonomic Mesh Office Chair",
+    "reviewerId": "USER-4412",
+    "reviewerName": "Laura Linney",
+    "reviewText": "Solid lumbar support and easy assembly. Took about 20 minutes. Color matches product photos accurately.",
+    "rating": 4,
+    "timestamp": "2026-08-07T18:00:00Z",
+    "distilBertToxicityScore": 2,
+    "distilBertSentimentScore": 0.75,
+    "isFakeReviewProb": 5,
+    "riskLevel": "low",
+    "flaggedCategories": [],
+    "status": "PUBLISHED",
+    "reviewerHistoryStats": {
+      "totalReviews": 7,
+      "flaggedRatio": 0.0,
+      "accountAgeDays": 180
+    }
+  }
+]

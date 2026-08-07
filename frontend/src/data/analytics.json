@@ -1,0 +1,32 @@
+{
+  "riskByType": [
+    { "category": "Electronics", "low": 850, "medium": 120, "high": 45 },
+    { "category": "Luxury Goods", "low": 310, "medium": 180, "high": 95 },
+    { "category": "Fashion", "low": 1200, "medium": 140, "high": 25 },
+    { "category": "Digital Cards", "low": 420, "medium": 210, "high": 160 },
+    { "category": "Home & Garden", "low": 980, "medium": 40, "high": 10 }
+  ],
+  "hourlyThreatVolume": [
+    { "hour": "00:00", "count": 12 },
+    { "hour": "03:00", "count": 28 },
+    { "hour": "06:00", "count": 45 },
+    { "hour": "09:00", "count": 89 },
+    { "hour": "12:00", "count": 110 },
+    { "hour": "15:00", "count": 95 },
+    { "hour": "18:00", "count": 142 },
+    { "hour": "21:00", "count": 168 }
+  ],
+  "agentAccuracyDistribution": [
+    { "agent": "Risk Agent (XGBoost)", "accuracy": 99.4, "latency": 14 },
+    { "agent": "Authenticity Agent (YOLO)", "accuracy": 98.7, "latency": 42 },
+    { "agent": "Review Agent (DistilBERT)", "accuracy": 97.9, "latency": 28 }
+  ],
+  "geoFraudHeatmap": [
+    { "country": "United States", "riskScore": 18, "fraudVolume": 140 },
+    { "country": "Romania", "riskScore": 84, "fraudVolume": 620 },
+    { "country": "United Kingdom", "riskScore": 22, "fraudVolume": 95 },
+    { "country": "Cyprus", "riskScore": 76, "fraudVolume": 380 },
+    { "country": "Nigeria", "riskScore": 88, "fraudVolume": 890 },
+    { "country": "Germany", "riskScore": 14, "fraudVolume": 50 }
+  ]
+}

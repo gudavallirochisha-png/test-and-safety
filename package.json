@@ -1,0 +1,25 @@
+{
+  "name": "trust-safety-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise AI Trust & Safety Platform for E-Commerce Marketplaces",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "lint:frontend": "cd frontend && npm run lint",
+    "preview:frontend": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "trust-and-safety",
+    "ai",
+    "e-commerce",
+    "fraud-detection",
+    "fastapi",
+    "react",
+    "xgboost",
+    "distilbert",
+    "yolo"
+  ],
+  "author": "Trust & Safety Engineering Team",
+  "license": "MIT"
+}
