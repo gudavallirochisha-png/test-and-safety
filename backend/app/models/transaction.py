@@ -1,27 +1,28 @@
-from beanie import Document
-from pydantic import Field
+from pydantic import BaseModel, Field
 from datetime import datetime, timezone
-from typing import List
+from typing import List, Optional
 
 
-class Transaction(Document):
-    txn_id: str = Field(..., description="Unique transaction ID")
-    order_id: str
+class TransactionModel(BaseModel):
+    transaction_id: str
     customer_id: str
-    customer_name: str
-    seller_id: str
-    seller_name: str
+    product_id: str = "PROD-1001"
+    seller_id: str = "SELL-8812"
     amount: float
-    payment_method: str
-    ip_address: str
-    device_fingerprint: str
-    location: str
-    xgboost_risk_score: float = 0.0
-    risk_level: str = "low"
-    fraud_factors: List[str] = []
-    recommendation: str = "APPROVE"
-    status: str = "APPROVED"  # APPROVED, BLOCKED, FLAGGED_FOR_REVIEW
+    currency: str = "USD"
+    payment_method: str = "Credit Card"
+    account_age_days: int = 30
+    device_id: str = "dev-fp-default"
+    ip_address: str = "127.0.0.1"
+    location: str = "San Francisco, CA"
+    order_history_count: int = 5
+    return_history_count: int = 0
+    risk_score: float = 0.15
+    risk_level: str = "LOW"  # LOW, MEDIUM, HIGH, CRITICAL
+    decision: str = "APPROVED"  # APPROVED, MANUAL_REVIEW, BLOCKED
+    risk_factors: List[str] = []
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    class Settings:
-        name = "transactions"
+    def to_dict(self) -> dict:
+        return self.model_dump()

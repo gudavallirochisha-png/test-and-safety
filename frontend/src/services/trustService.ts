@@ -5,114 +5,140 @@ import transactionsMock from '../data/transactions.json';
 import reviewsMock from '../data/reviews.json';
 import alertsMock from '../data/alerts.json';
 import auditMock from '../data/audit.json';
+import analyticsMock from '../data/analytics.json';
 
 export const trustService = {
-  // Health
+  // Health Check
   getHealth: async () => {
     try {
       return await apiClient.get('/health');
     } catch {
-      return { status: 'healthy (fallback)', database_status: 'mock' };
+      return { status: 'healthy (offline fallback)', database_status: 'mock' };
     }
   },
 
-  // Analytics Dashboard
+  // Dashboard Summary & Analytics
+  getDashboardSummary: async () => {
+    try {
+      return await apiClient.get('/dashboard/summary');
+    } catch {
+      return {
+        total_products: overviewMock.totalProducts,
+        verified_products: 140000,
+        flagged_products: 2850,
+        total_transactions: overviewMock.totalTransactions,
+        high_risk_transactions: 28720,
+        blocked_transactions: 1280,
+        total_reviews: overviewMock.totalReviews,
+        flagged_reviews: 4200,
+        open_alerts: overviewMock.totalFraudAlerts,
+        agent_status: overviewMock.agents,
+      };
+    }
+  },
+
   getAnalytics: async () => {
     try {
       return await apiClient.get('/analytics');
     } catch {
-      return overviewMock;
+      return analyticsMock;
     }
   },
 
   // Products API
-  getProducts: async () => {
+  getProducts: async (page = 1, limit = 50) => {
     try {
-      const res = await apiClient.get('/products');
+      const res: any = await apiClient.get(`/products?page=${page}&limit=${limit}`);
       return Array.isArray(res) && res.length > 0 ? res : productsMock;
     } catch {
       return productsMock;
     }
   },
 
-  createProduct: async (payload: any) => {
+  verifyProduct: async (payload: any) => {
     try {
-      return await apiClient.post('/products', payload);
+      return await apiClient.post('/products/verify', payload);
     } catch {
-      return payload;
+      return { product: payload, decision: {}, alert_created: false, audit_log_id: 'AUD-MOCK' };
     }
   },
 
-  // Orders / Transactions API
-  getTransactions: async () => {
+  // Risk / Transactions API
+  getTransactions: async (page = 1, limit = 50) => {
     try {
-      const res = await apiClient.get('/orders');
+      const res: any = await apiClient.get(`/risk/transactions?page=${page}&limit=${limit}`);
       return Array.isArray(res) && res.length > 0 ? res : transactionsMock;
     } catch {
       return transactionsMock;
     }
   },
 
-  // Reviews API
-  getReviews: async () => {
+  analyzeRisk: async (payload: any) => {
     try {
-      const res = await apiClient.get('/reviews');
+      return await apiClient.post('/risk/analyze', payload);
+    } catch {
+      return { transaction: payload, decision: {}, alert_created: false, audit_log_id: 'AUD-MOCK' };
+    }
+  },
+
+  // Reviews API
+  getReviews: async (page = 1, limit = 50) => {
+    try {
+      const res: any = await apiClient.get(`/reviews?page=${page}&limit=${limit}`);
       return Array.isArray(res) && res.length > 0 ? res : reviewsMock;
     } catch {
       return reviewsMock;
     }
   },
 
-  // Fraud Alerts API
-  getAlerts: async () => {
+  analyzeReview: async (payload: any) => {
     try {
-      const res = await apiClient.get('/alerts');
+      return await apiClient.post('/reviews/analyze', payload);
+    } catch {
+      return { review: payload, decision: {}, alert_created: false, audit_log_id: 'AUD-MOCK' };
+    }
+  },
+
+  // Fraud Alerts API
+  getAlerts: async (page = 1, limit = 10, severity?: string) => {
+    try {
+      const query = severity && severity !== 'all' ? `&severity=${severity}` : '';
+      const res: any = await apiClient.get(`/alerts?page=${page}&limit=${limit}${query}`);
+      if (res && res.items) {
+        return res.items;
+      }
       return Array.isArray(res) && res.length > 0 ? res : alertsMock;
     } catch {
       return alertsMock;
     }
   },
 
+  updateAlertStatus: async (alertId: string, status: string, resolution_notes?: string) => {
+    try {
+      return await apiClient.patch(`/alerts/${alertId}/status`, { status, resolution_notes });
+    } catch {
+      return { alert_id: alertId, status, resolution_notes };
+    }
+  },
+
   resolveAlert: async (alertId: string) => {
     try {
-      return await apiClient.put(`/alerts/${alertId}/resolve`);
+      return await apiClient.patch(`/alerts/${alertId}/status`, { status: 'RESOLVED', resolution_notes: 'Resolved by analyst' });
     } catch {
-      return { alert_id: alertId, is_resolved: true };
+      return { alert_id: alertId, status: 'RESOLVED' };
     }
   },
 
   // Audit Logs API
-  getAuditLogs: async () => {
+  getAuditLogs: async (page = 1, limit = 20) => {
     try {
-      const res = await apiClient.get('/audit');
+      const res: any = await apiClient.get(`/audit-logs?page=${page}&limit=${limit}`);
+      if (res && res.items) {
+        return res.items;
+      }
       return Array.isArray(res) && res.length > 0 ? res : auditMock;
     } catch {
       return auditMock;
-    }
-  },
-
-  // Placeholder AI APIs
-  evaluateRisk: async (payload: any) => {
-    try {
-      return await apiClient.post('/ai/risk', { payload });
-    } catch {
-      return { prediction: 'High Risk', confidence: 0.94, reason: 'Placeholder until XGBoost model' };
-    }
-  },
-
-  evaluateReview: async (payload: any) => {
-    try {
-      return await apiClient.post('/ai/review', { payload });
-    } catch {
-      return { prediction: 'Toxic Review Detected', confidence: 0.96, reason: 'Placeholder until DistilBERT model' };
-    }
-  },
-
-  evaluateProduct: async (payload: any) => {
-    try {
-      return await apiClient.post('/ai/product', { payload });
-    } catch {
-      return { prediction: 'Authentic Verified', confidence: 0.98, reason: 'Placeholder until YOLO model' };
     }
   },
 };

@@ -3,51 +3,50 @@ from typing import List, Optional
 from datetime import datetime
 
 
-class TransactionCreate(BaseModel):
-    order_id: str = Field(..., example="ORD-99014")
+class RiskAnalysisRequestSchema(BaseModel):
+    transaction_id: Optional[str] = None
     customer_id: str = Field(..., example="CUST-4190")
-    customer_name: str = Field(..., example="Alex Mercer")
-    seller_id: str = Field(..., example="SELL-8812")
-    seller_name: str = Field(..., example="VogueBoutique Outlet")
+    product_id: str = Field("PROD-1001", example="PROD-1001")
+    seller_id: str = Field("SELL-8812", example="SELL-8812")
     amount: float = Field(..., example=4999.00)
-    payment_method: str = Field(..., example="Credit Card (Prepaid)")
-    ip_address: str = Field(..., example="185.220.101.4")
-    device_fingerprint: str = Field(..., example="dev-fp-9910-proxy")
-    location: str = Field(..., example="Bucharest, Romania")
-    xgboost_risk_score: Optional[float] = 0.0
-    risk_level: Optional[str] = "low"
-    fraud_factors: Optional[List[str]] = []
-    recommendation: Optional[str] = "APPROVE"
-    status: Optional[str] = "APPROVED"
+    currency: str = Field("USD", example="USD")
+    payment_method: str = Field("Credit Card", example="Credit Card (Prepaid)")
+    account_age_days: int = Field(1, example=1)
+    device_id: str = Field("dev-fp-9910-proxy", example="dev-fp-9910-proxy")
+    ip_address: str = Field("185.220.101.4", example="185.220.101.4")
+    location: str = Field("Bucharest, Romania", example="Bucharest, Romania")
+    order_history_count: int = Field(0, example=0)
+    return_history_count: int = Field(0, example=0)
 
 
-class TransactionUpdate(BaseModel):
-    status: Optional[str] = None
-    risk_level: Optional[str] = None
-    xgboost_risk_score: Optional[float] = None
-    recommendation: Optional[str] = None
-    fraud_factors: Optional[List[str]] = None
-
-
-class TransactionResponse(BaseModel):
-    id: str = Field(..., alias="_id")
-    txn_id: str
-    order_id: str
+class TransactionResponseSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    transaction_id: str
     customer_id: str
-    customer_name: str
+    product_id: str
     seller_id: str
-    seller_name: str
     amount: float
+    currency: str
     payment_method: str
+    account_age_days: int
+    device_id: str
     ip_address: str
-    device_fingerprint: str
     location: str
-    xgboost_risk_score: float
+    order_history_count: int
+    return_history_count: int
+    risk_score: float
     risk_level: str
-    fraud_factors: List[str]
-    recommendation: str
-    status: str
+    decision: str
+    risk_factors: List[str]
     created_at: datetime
+    updated_at: datetime
 
     class Config:
         populate_by_name = True
+
+
+class RiskAnalysisResponseSchema(BaseModel):
+    transaction: TransactionResponseSchema
+    decision: dict
+    alert_created: bool = False
+    audit_log_id: str

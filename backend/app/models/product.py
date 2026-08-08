@@ -1,23 +1,25 @@
-from beanie import Document
-from pydantic import Field
+from pydantic import BaseModel, Field
 from datetime import datetime, timezone
-from typing import List, Dict, Any
+from typing import List, Optional
 
 
-class Product(Document):
-    product_id: str = Field(..., description="Unique product identifier")
-    product_name: str
+class ProductModel(BaseModel):
+    product_id: str
     seller_id: str
-    seller_name: str
-    category: str
+    name: str
+    brand: str = "Generic"
+    category: str = "General"
+    description: str = ""
     price: float
-    image_url: str
-    authenticity_score: float = 100.0
-    risk_level: str = "low"
-    status: str = "VERIFIED"  # VERIFIED, COUNTERFEIT_FLAGGED, MANUAL_REVIEW
-    yolo_detections: List[Dict[str, Any]] = []
-    flagged_reasons: List[str] = []
+    currency: str = "USD"
+    image_urls: List[str] = []
+    status: str = "VERIFIED"
+    authenticity_score: float = 95.0
+    counterfeit_probability: float = 0.05
+    verification_status: str = "VERIFIED"  # PENDING, VERIFIED, FLAGGED, REJECTED, MANUAL_REVIEW
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    class Settings:
-        name = "products"
+    def to_dict(self) -> dict:
+        data = self.model_dump()
+        return data

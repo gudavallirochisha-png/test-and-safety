@@ -1,21 +1,22 @@
-from beanie import Document
-from pydantic import Field
+from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from typing import Optional
 
 
-class Alert(Document):
-    alert_id: str = Field(..., description="Unique alert ID")
-    alert_code: str
+class AlertModel(BaseModel):
+    alert_id: str
+    type: str = "SECURITY_VELOCITY"
+    severity: str = "MEDIUM"  # LOW, MEDIUM, HIGH, CRITICAL
+    agent: str = "Risk Agent"
+    entity_type: str = "Transaction"
+    entity_id: str
     title: str
     description: str
-    severity: str = "medium"  # low, medium, high, critical
-    agent_source: str = "Risk Agent"  # Risk Agent, Review Agent, Authenticity Agent
-    target_type: str = "Product"  # Seller, Product, Transaction, User
-    target_id: str
-    is_resolved: bool = False
-    assigned_to: Optional[str] = None
+    confidence: float = 0.90
+    status: str = "OPEN"  # OPEN, INVESTIGATING, RESOLVED, DISMISSED
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    resolved_at: Optional[datetime] = None
+    resolution_notes: Optional[str] = None
 
-    class Settings:
-        name = "alerts"
+    def to_dict(self) -> dict:
+        return self.model_dump()

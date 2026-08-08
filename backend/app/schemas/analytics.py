@@ -2,12 +2,14 @@ from pydantic import BaseModel
 from typing import Dict, List, Any
 
 
-class AnalyticsDashboardResponse(BaseModel):
-    totalProducts: int
-    totalTransactions: int
-    totalReviews: int
-    totalFraudAlerts: int
-    riskDistribution: Dict[str, int]
-    monthlyFraudTrend: List[Dict[str, Any]]
-    agents: List[Dict[str, Any]]
-    systemHealth: Dict[str, Any]
+class DashboardSummaryResponseSchema(BaseModel):
+    total_products: int
+    verified_products: int
+    flagged_products: int
+    total_transactions: int
+    high_risk_transactions: int
+    blocked_transactions: int
+    total_reviews: int
+    flagged_reviews: int
+    open_alerts: int
+    agent_status: List[Dict[str, Any]]

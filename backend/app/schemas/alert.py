@@ -1,33 +1,49 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 
 
-class AlertCreate(BaseModel):
-    alert_code: str = Field(..., example="SEC-TOR-VELOCITY")
-    title: str = Field(..., example="High Velocity Tor Checkout Ring Detected")
-    description: str = Field(..., example="Risk Agent identified 14 rapid checkout attempts originating from Tor Exit Node.")
-    severity: str = Field("medium", example="critical")
-    agent_source: str = Field("Risk Agent", example="Risk Agent")
-    target_type: str = Field("Seller", example="Seller")
-    target_id: str = Field(..., example="SELL-8812")
-    is_resolved: Optional[bool] = False
-    assigned_to: Optional[str] = None
+class AlertCreateSchema(BaseModel):
+    alert_id: Optional[str] = None
+    type: str = Field("SECURITY_VELOCITY", example="SECURITY_VELOCITY")
+    severity: str = Field("HIGH", example="HIGH")
+    agent: str = Field("Risk Agent", example="Risk Agent")
+    entity_type: str = Field("Transaction", example="Transaction")
+    entity_id: str = Field(..., example="TXN-88001")
+    title: str = Field(..., example="High Velocity Tor Checkout Ring")
+    description: str = Field(..., example="Risk Agent identified 14 rapid checkout attempts.")
+    confidence: float = Field(0.95, example=0.95)
+    status: str = Field("OPEN", example="OPEN")
 
 
-class AlertResponse(BaseModel):
-    id: str = Field(..., alias="_id")
+class AlertStatusUpdateSchema(BaseModel):
+    status: str = Field(..., example="RESOLVED")  # OPEN, INVESTIGATING, RESOLVED, DISMISSED
+    resolution_notes: Optional[str] = Field(None, example="Verified customer identity and cleared hold.")
+
+
+class AlertResponseSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
     alert_id: str
-    alert_code: str
+    type: str
+    severity: str
+    agent: str
+    entity_type: str
+    entity_id: str
     title: str
     description: str
-    severity: str
-    agent_source: str
-    target_type: str
-    target_id: str
-    is_resolved: bool
-    assigned_to: Optional[str]
+    confidence: float
+    status: str
     created_at: datetime
+    resolved_at: Optional[datetime] = None
+    resolution_notes: Optional[str] = None
 
     class Config:
         populate_by_name = True
+
+
+class PaginatedAlertsResponseSchema(BaseModel):
+    items: List[AlertResponseSchema]
+    page: int
+    limit: int
+    total: int
+    total_pages: int

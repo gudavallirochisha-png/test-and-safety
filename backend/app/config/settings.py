@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: Union[List[str], str] = ["http://localhost:5173", "http://localhost:3000"]
 
     MONGODB_URI: str = "mongodb://localhost:27017"
-    MONGODB_DATABASE: str = "trust_safety_db"
+    MONGODB_DATABASE: str = "trust_safety"
     MONGODB_MAX_POOL_SIZE: int = 50
 
     RISK_SCORE_THRESHOLD_HIGH: float = 0.85
